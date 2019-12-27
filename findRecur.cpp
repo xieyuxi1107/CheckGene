@@ -15,6 +15,7 @@
 #include <utility>
 #include <unordered_map>
 #include <iterator>
+#include <fstream>
 #include <map>
 using namespace std;
 
@@ -91,12 +92,16 @@ int main() {
     if(max_num>countLookUp.size())
         max_num = (int)countLookUp.size();
     
+    ofstream myfile;
+    myfile.open ("output.txt");
+    
     for(int i = 0; i<max_num; ++i){
-        cout<<"Gene: "<<countLookUp[i].first<<", Total occurring times: "<<countLookUp[i].second<<endl;
+        myfile <<"Gene: "<<countLookUp[i].first<<", Total occurring times: "<<countLookUp[i].second<<endl;
         for(int j = 0; j<countLookUp[i].second; ++j){
-            cout<<"Sheet: "<<(genes[(countLookUp[i].first)].second)[j][0]<<", Row: "<<( (genes[(countLookUp[i].first)].second)[j][1]+2)<<endl;
+            myfile <<"Sheet: "<<(genes[(countLookUp[i].first)].second)[j][0]<<", Row: "<<( (genes[(countLookUp[i].first)].second)[j][1]+2)<<endl;
         }//for
-        cout<<endl;
+        myfile<<endl;
     }//for
+    myfile.close();
 
 }//main

@@ -96,7 +96,14 @@ int main() {
     myfile.open ("output.txt");
     
     for(int i = 0; i<max_num; ++i){
-        myfile <<"Gene: "<<countLookUp[i].first<<", Total occurring times: "<<countLookUp[i].second<<endl;
+        //Count how many unique sheet
+        int count_sheet = 1;
+        for(int j = 0; j<(countLookUp[i].second-1); ++j){
+            if(((genes[(countLookUp[i].first)].second)[j][0]) != ((genes[(countLookUp[i].first)].second)[j+1][0]))
+                ++count_sheet;
+        }//for
+        
+        myfile <<"Gene: "<<countLookUp[i].first<<", Total occurring times: "<<countLookUp[i].second<<"; occurred in "<<count_sheet<<" unique sheet(s)"<<endl;
         for(int j = 0; j<countLookUp[i].second; ++j){
             myfile <<"Sheet: "<<(genes[(countLookUp[i].first)].second)[j][0]<<", Row: "<<( (genes[(countLookUp[i].first)].second)[j][1]+2)<<endl;
         }//for
